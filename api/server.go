@@ -42,7 +42,7 @@ func NewServer(config util.Config,store db.Store) (*Server,error){
 	authorize_route.POST("/account/",server.createAccount)
 	authorize_route.GET("/account/:id",server.getAccountByID)
 	authorize_route.GET("/account/",server.listAccounts)
-	
+	authorize_route.GET("/token/new/",server.newAcessToken)
 	server.router=router
 	return server,nil
 }

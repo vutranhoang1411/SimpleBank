@@ -14,8 +14,8 @@ type PasetoMaker struct {
 }
 
 // CreateToken implements Maker
-func (pasetoMaker *PasetoMaker) CreateToken(username string, duration time.Duration) (string, *Payload, error) {
-	payload,err:=NewPayload(username,duration);
+func (pasetoMaker *PasetoMaker) CreateToken(email string, duration time.Duration) (string, *Payload, error) {
+	payload,err:=NewPayload(email,duration);
 	if err!=nil{
 		return "",payload,err
 	}

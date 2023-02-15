@@ -13,4 +13,12 @@ test:
 	go test -v -cover ./...
 sqlc:
 	sqlc generate
-.PHONY: postgres createdb dropdb psql sqlc
+protoc:
+	protoc --go_out=./pb --go_opt=paths=source_relative \
+    --go-grpc_out=./pb --go-grpc_opt=paths=source_relative \
+    proto/*.proto
+dbup:
+	migrate -path db/migration -database "postgresql://root:Hoang2002@localhost:5432/simple_bank?sslmode=disable" -verbose up
+dbdown:
+	migrate -path db/migration -database "postgresql://root:Hoang2002@localhost:5432/simple_bank?sslmode=disable" -verbose down
+.PHONY: postgres createdb dropdb psql sqlc protoc

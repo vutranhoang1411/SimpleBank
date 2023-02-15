@@ -13,7 +13,7 @@ import (
 func newTestServer(store db.Store)(*Server,error){
 	config:=util.Config{
 		KeyString: util.RandomString(32),
-		TokenDuration: time.Minute,
+		AccessTokenDuration: time.Minute,
 	}
 
 	server,err:=NewServer(config,store)

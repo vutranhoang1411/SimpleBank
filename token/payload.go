@@ -8,19 +8,19 @@ import (
 
 type Payload struct{
 	ID uuid.UUID `json:"id"`
-	Username string `json:"user_name"`
+	Email string `json:"email"`
 	IssuedAt time.Time `json:"issued_at"`
 	ExpiredAt time.Time `json:"expired_at"`
 }
 
-func NewPayload(username string,duration time.Duration)(*Payload,error){
+func NewPayload(email string,duration time.Duration)(*Payload,error){
 	tokenID,err:=uuid.NewUUID()
 	if (err!=nil){
 		return nil,err
 	}
 	payload:=&Payload{
 		ID:tokenID,
-		Username: username,
+		Email: email,
 		IssuedAt: time.Now(),
 		ExpiredAt: time.Now().Add(duration),
 	}

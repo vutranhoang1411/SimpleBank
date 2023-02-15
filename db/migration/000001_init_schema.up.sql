@@ -28,15 +28,6 @@ CREATE TABLE "users"(
   "created_at" timestamptz NOT NULL DEFAULT(now()),
   UNIQUE("email")
 );
-CREATE TABLE "sessions"(
-  "id" uuid PRIMARY KEY,
-  "user_email"  varchar NOT NULL,
-  "refresh_token" varchar NOT NULL ,
-  "is_blocked" boolean NOT NULL DEFAULT false,
-  "expires_at" timestamptz NOT NULL,
-  "created_at" timestamptz NOT NULL DEFAULT (now())
-);
-
 
 CREATE INDEX ON "accounts" ("owner");
 
@@ -59,4 +50,3 @@ ALTER TABLE "transfers" ADD FOREIGN KEY ("from_account_id") REFERENCES "accounts
 ALTER TABLE "transfers" ADD FOREIGN KEY ("to_account_id") REFERENCES "accounts" ("id") ON DELETE CASCADE;
 
 ALTER TABLE "accounts" ADD FOREIGN KEY ("owner") REFERENCES "users"("id") ON DELETE CASCADE;
-alter table "sessions" add foreign key ("user_email") references "users"("email");
