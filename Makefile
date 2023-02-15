@@ -21,4 +21,6 @@ dbup:
 	migrate -path db/migration -database "postgresql://root:Hoang2002@localhost:5432/simple_bank?sslmode=disable" -verbose up
 dbdown:
 	migrate -path db/migration -database "postgresql://root:Hoang2002@localhost:5432/simple_bank?sslmode=disable" -verbose down
+runTest:
+	go test -v ./...
 .PHONY: postgres createdb dropdb psql sqlc protoc
